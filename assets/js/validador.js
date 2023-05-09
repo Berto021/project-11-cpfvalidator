@@ -1,26 +1,62 @@
-const input = document.querySelector('.input'); 
+const masckCPF = function(){
+    const input = document.querySelector('.input'); 
 
-input.addEventListener('keypress', () => { 
-    let inputLength = input.value.length
+    input.addEventListener('keypress', () => { 
+        let inputLength = input.value.length
 
-    if( inputLength === 3){
+        if( inputLength === 3){
         input.value += '.'
-    }
-    if( inputLength === 7){
+        }                         //Aqui são os códigos pra máscara de cpf
+        if( inputLength === 7){
         input.value += '.'
-    }
-    if( inputLength === 11){
+        }
+        if( inputLength === 11){
         input.value += '-'
-    }
+        }
     
-})
+    })
+
+}
+const checkLength = num =>{
+    if(num.length < 14){
+        result.innerHTML = 'Digite um CPF válido'
+        result.style.color = 'black'
+        result.style.background = 'red'
+    }
+}
 
 
-const cpf = '111.111.111-11'
-const limpaCpf = cpf.replace(/\D+/g,'')//aqui vamos tirar tudo que não é number
 
+//Agora vamos pegar os enventos lá do html
+const result = document.querySelector('.result')
+const form = document.querySelector('#form')
+form.addEventListener('submit', event =>{
+        event.preventDefault();
+
+        const input = event.target.querySelector('.input')
+        checkLength(input.value)
+        const realInput = input.value.replace(/\D+/g,'')
+       
+        result.innerHTML = ''
+        console.log(input.value)
+        console.log(realInput)
+        validaNum1Cpf(realInput)
+        
+        
+        input.value = ''
+        
+        
+    })
+
+
+
+
+
+const cpf = '166.366.817-56'
+const limpaCpf = cpf.replace(/\D+/g,'')
 
 const validaNum1Cpf = cpf => {
+   
     
 
     const n1 =cpf[0]*10//10
@@ -51,20 +87,27 @@ const validaNum1Cpf = cpf => {
     
     
     let testCpf = [...cpf]
-   
-   
+
+    
     testCpf[9] =  finalDigit1.toString()
     testCpf[10] = finalDigit2.toString()
     testCpf = testCpf.join()
     testCpf = testCpf.replace(/\D+/g,'')
+
     console.log(testCpf)
     console.log(cpf)
-
+ 
    
     if(testCpf === cpf){
-        console.log(`Seu cpf é valido `)
-    }else console.log(`Teu cpf não é valido`)
+        result.innerHTML = 'Seu CPF é Válido'
+        result.style.color = 'black'
+        result.style.background = 'green'
+    }else{
+         result.innerHTML = 'Seu CPF é invalido'
+         result.style.color = 'black'
+         result.style.background = 'red'
+        }
 
 
 }
-validaNum1Cpf(limpaCpf)
+masckCPF()
