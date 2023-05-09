@@ -12,15 +12,14 @@
     <section class="container">
         <h1>Validador de CPF</h1>
 
-        <p>O validador de CPF é um dos desafios que todo programador fez, ou ainda vai fazer, pois ele utiliza vários conceitos importantes da programação.</p>
+        <p>Parea se validar um CPF precisa utilizar um sistema feito com base em uma sequência de cálculos criados pelo governo e aqui está o meu validador</p>
 
         <form action="">
 
-            <label for="input">Label teste #1</label>
-            <input type="text" id="input">
+            <label for="input-teste1">Digite seu CPF:</label>
+            <input type="text" class="input" placeholder="EX: 000.000.000-00" autocomplete="off" maxlength="14" autofocus oninput="value = value.replace(/[^0-9.+-/'*'()']/g, '')">
 
-            
-            <input class="button" type="button" value="Validar">
+            <input class="button" type="button" value="enviar">
         </form>
 
     </section>
